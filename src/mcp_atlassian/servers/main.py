@@ -215,6 +215,10 @@ class UserTokenMiddleware:
                 "UserTokenMiddleware initialized without mcp_server_ref. Path matching for MCP endpoint might fail if settings are needed."
             )
 
+    def __getattr__(self, name):
+        """Delegate attribute access to the wrapped app."""
+        return getattr(self.app, name)
+
     async def __call__(self, scope, receive, send):
         if scope["type"] != "http":
             await self.app(scope, receive, send)
