@@ -89,7 +89,7 @@ class SearchMixin(JiraClient, IssueOperationsProto):
                 actual_total = -1
                 try:
                     # Call 1: Get metadata (including total) using new search/jql API
-                    metadata_params = {"jql": jql, "maxResults": 0}
+                    metadata_params = {"jql": jql, "maxResults": 1}
                     metadata_response = self.jira.get(
                         "/rest/api/3/search/jql", params=metadata_params
                     )
