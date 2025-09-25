@@ -88,10 +88,10 @@ class SearchMixin(JiraClient, IssueOperationsProto):
             if self.config.is_cloud:
                 actual_total = -1
                 try:
-                    # Call 1: Get metadata (including total) using standard search API
+                    # Call 1: Get metadata (including total) using new search/jql API
                     metadata_params = {"jql": jql, "maxResults": 0}
                     metadata_response = self.jira.get(
-                        self.jira.resource_url("search"), params=metadata_params
+                        "/rest/api/3/search/jql", params=metadata_params
                     )
 
                     if (
